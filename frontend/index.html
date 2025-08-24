@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeartGuard</title>
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="main-container">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-heartbeat"></i> HeartGuard
+          <p style="font-size: 1rem;">AI Based Hypertension Risk Assessment</p>
+        </a>
+        <div class="navbar-nav ms-auto">
+          <span class="navbar-text text-white">
+            <i class="fas fa-user-circle"></i> <span id="welcomeName">Welcome</span>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="mainTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab">
+          <i class="fas fa-user"></i> Profile
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab">
+          <i class="fas fa-calendar-day"></i> Daily Tracking
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="meals-tab" data-bs-toggle="tab" data-bs-target="#meals" type="button" role="tab">
+          <i class="fas fa-utensils"></i> Meal Logging
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk" type="button" role="tab">
+          <i class="fas fa-chart-line"></i> Risk Assessment
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="mainTabContent">
+      <!-- Profile -->
+      <div class="tab-pane fade show active" id="profile" role="tabpanel">
+        <div class="form-section">
+          <h4 class="section-title">
+            <i class="fas fa-user-edit"></i> Personal Information
+          </h4>
+          <form id="profileForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" placeholder="Enter your age">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">BMI</label>
+                <input type="number" step="0.1" class="form-control" id="bmi" placeholder="Enter your BMI">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Smoking Status</label>
+                <select class="form-select" id="smoking_status">
+                  <option value="">Select smoking status</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-section">
+          <h4 class="section-title">
+            <i class="fas fa-notes-medical"></i> Medical History
+          </h4>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Hypertension History</label>
+              <select class="form-select" id="bp_history">
+                <option value="">Select BP history</option>
+                <option value="normal">Normal</option>
+                <option value="prehypertension">Prehypertension</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Family History of Hypertension</label>
+              <select class="form-select" id="family_history">
+                <option value="">Select family history</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Current Medications</label>
+            <select class="form-select" id="medication">
+              <option value="">Select medication</option>
+              <option value="none">None</option>
+              <option value="Beta Blocker">Beta Blocker</option>
+              <option value="Diuretic">Diuretic</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg" id="saveProfileBtn">
+            <i class="fas fa-save"></i> Save Profile
+          </button>
+        </div>
+      </div>
+
+      <!-- Daily Tracking -->
+      <div class="tab-pane fade" id="daily" role="tabpanel">
+        <div class="daily-summary">
+          <h4><i class="fas fa-calendar-check"></i> Daily Tracking</h4>
+          <p class="mb-0">Log sleep, stress, and exercise. Entries show below.</p>
+        </div>
+
+        <div class="form-section">
+          <h4 class="section-title">
+            <i class="fas fa-bed"></i> Sleep & Wellness
+          </h4>
+          <form id="dailyForm">
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="daily_date">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label class="form-label">Sleep Hours</label>
+                <input type="number" step="0.5" class="form-control" id="sleep_hours" placeholder="Hours slept">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label class="form-label">Stress (1-10)</label>
+                <select class="form-select" id="stress_level" aria-label="Default select example">
+                    <option selected>Select Stress Level</option>
+                    <option value="1">1 - Very Low </option>
+                    <option value="2">2 - Low </option>
+                    <option value="3">3 - Low-Moderate</option>
+                    <option value="4">4 - Moderate</option>
+                    <option value="5">5 - Moderate</option>
+                    <option value="6">6 - Moderate-High</option>
+                    <option value="7">7 - High</option>
+                    <option value="8">8 - High</option>
+                    <option value="9">9 - Very High</option>
+                    <option value="10">10 - Extremely High</option>
+                </select>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label class="form-label">Exercise (min)</label>
+                <input type="number" class="form-control" id="exercise_minutes" placeholder="Minutes">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-plus"></i> Add Entry
+            </button>
+          </form>
+        </div>
+
+        <div class="form-section">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="section-title mb-0"><i class="fas fa-table"></i> Daily Logs</h5>
+            <button class="btn btn-outline-danger btn-sm" id="clearDailyBtn"><i class="fas fa-trash"></i> Clear All</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle" id="dailyTable">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Sleep (h)</th>
+                  <th>Stress</th>
+                  <th>Exercise (min)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meals -->
+      <div class="tab-pane fade" id="meals" role="tabpanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4><i class="fas fa-utensils"></i> Meal Tracker</h4>
+          <div class="stat-card px-3 py-2 mb-0">
+            <div class="small text-muted">Today's Salt Intake (g)</div>
+            <div class="stat-number" id="todaySalt">0</div>
+          </div>
+          <div class="stat-card px-3 py-2 mb-0">
+            <div class="small text-muted">Weekly Salt Intake (g)</div>
+            <div class="stat-number" id="weeklySalt">0</div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4 class="section-title">
+            <i class="fas fa-bowl-food"></i> Add Meal
+          </h4>
+          <form id="mealForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="meal_date">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Food</label>
+                <input type="text" class="form-control" id="food" placeholder="e.g., chicken soup">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-plus"></i> Add Meal
+            </button>
+          </form>
+        </div>
+
+        <div class="form-section">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="section-title mb-0"><i class="fas fa-table"></i> Meals</h5>
+            <button class="btn btn-outline-danger btn-sm" id="clearMealsBtn"><i class="fas fa-trash"></i> Clear All</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle" id="mealTable">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Food</th>
+                  <th>Salt Intake (g)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="text-end mt-2">
+            <span class="badge bg-warning text-dark">Weekly Salt Intake: <span id="weeklySalt">0</span> mg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Risk Assessment -->
+      <div class="tab-pane fade" id="risk" role="tabpanel">
+        <div class="text-center mb-4">
+          <h4><i class="fas fa-chart-line"></i> Hypertension Risk Assessment</h4>
+          <p class="text-muted">We compute **weekly averages** for more reliable trends, plus daily insights.</p>
+        </div>
+
+        <div class="loading-spinner" id="riskLoading" style="display:none;">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2">Crunching your weekly metrics…</p>
+        </div>
+
+        <div id="riskResult"></div>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg" id="calcRiskBtn">
+            <i class="fas fa-chart-bar"></i> Calculate Risk
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- App scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/daily.js"></script>
+  <script src="js/meals.js"></script>
+  <script src="js/risk.js"></script>
+</body>
+</html>
