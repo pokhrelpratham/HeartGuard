@@ -76,6 +76,15 @@ Replace App ID and API Key in - [meals.js](frontend/js/meals.js)
 
 ## How to Run
 
+### Dependencies
+- flask
+- flask-cors
+- scikit-learn
+- pandas
+- numpy
+- joblib
+
+
 ### Prerequisites
 - Python 3.11   
 - Pip installed  
