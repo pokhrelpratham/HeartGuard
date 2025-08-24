@@ -4,8 +4,8 @@ const todaySaltEl = document.getElementById('todaySalt');
 const weeklySaltEl = document.getElementById('weeklySalt');
 const clearMealsBtn = document.getElementById('clearMealsBtn');
 
-const NIX_APP_ID = '5b872af6';
-const NIX_APP_KEY = '57762c5bd5785a52d0bca208869e95a6';
+const NIX_APP_ID = 'ADD_YOUR_APP_ID'; // Nutritionix App ID
+const NIX_API_KEY = 'ADD_API_KEY'; // Nutritionix API Key
 
 
 function loadMeals() {
@@ -72,7 +72,7 @@ async function fetchSaltFromNutritionix(food) {
     headers: {
       'Content-Type':'application/json',
       'x-app-id': NIX_APP_ID,
-      'x-app-key': NIX_APP_KEY
+      'x-app-key': NIX_API_KEY
     },
     body: JSON.stringify(body)
   });
