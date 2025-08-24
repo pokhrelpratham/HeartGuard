@@ -69,7 +69,7 @@ To calculate **salt intake in grams** from food entries, the app uses the [Nutri
 ### Setup
 1. Sign up at [Nutritionix Developer Portal](https://developer.nutritionix.com/) and generate your **App ID** and **API Key**.
 
-Replace App ID and API Key in
+Replace App ID and API Key in - [meals.js](frontend/js/meals.js)
 
 
 
