@@ -47,7 +47,7 @@ function sumSaltForDate(date) {
 function sumSaltLast7Days() {
   const meals = getJSON(KEYS.MEALS, []);
   const now = new Date(todayISO());
-  const from = new Date(now); from.setDate(now.getDate()-6); // 7-day window
+  const from = new Date(now); from.setDate(now.getDate()-6); // 7 day window
   return meals
     .filter(m=>{
       const d = new Date(m.date);
@@ -99,7 +99,7 @@ mealForm.addEventListener('submit', async (e)=>{
   btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching…';
 
   try {
-    salt = await fetchSaltFromNutritionix(food); // You can adjust qty/unit if needed
+    salt = await fetchSaltFromNutritionix(food); 
   } catch (err) {
     console.error(err);
     alert('Could not fetch salt. Using 0 mg.');
@@ -124,5 +124,5 @@ clearMealsBtn.addEventListener('click', ()=>{
   }
 });
 
-// Initial render
+// initial render
 document.addEventListener('DOMContentLoaded', loadMeals);
